@@ -48,6 +48,7 @@ def city_info(city_name: str, MY_APY_KEY: str):
 
     api_url = 'https://api.api-ninjas.com/v1/country?name={}'.format(resp_city.json()[0]['country'])
     resp_country = requests.get(api_url, headers={'X-Api-Key': MY_APY_KEY})  # запрос информации о стране
+    
     if resp_city.status_code == requests.codes.ok and resp_country.status_code == requests.codes.ok:
         print('--------------')
         print(resp_city.json()[0]['name'])
@@ -76,5 +77,9 @@ def main(city_name: str, api_key=MY_APY_KEY):
 if __name__ == "__main__":
     try:
         main()
-    except Exception:
+    except TypeError:
         print("System Error")
+    # except SyntaxError:
+        print("System Error")
+    except IndexError:
+        print("Invalid city name")
