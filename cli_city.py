@@ -34,7 +34,7 @@ UAH
 MY_APY_KEY = '1/A0CepAbSbSFXX4jk/lQw==8GpZICsyggRPEkPF'
 
 
-# city_name = 'Kyiv'
+# city_name = 'Odessa'
 
 def city_info(city_name: str, MY_APY_KEY: str):
     """
@@ -63,9 +63,18 @@ def city_info(city_name: str, MY_APY_KEY: str):
 
 @click.command()  # подключаем возможность передачи данных из терминала
 @click.argument('city_name')  # передаём в качестве аргумента название города, в терминале
+# @click.option(help='After space input city name, like Kyiv')
 def main(city_name: str, api_key=MY_APY_KEY):
+    """
+
+    input city name, like Kyiv and
+    return: information of city: country, population, currency code.
+    """
     city_info(city_name, api_key)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        print("System Error")
